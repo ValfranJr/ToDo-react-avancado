@@ -2,12 +2,14 @@
 import React from 'react';
 const TodoItem = React.memo(function TodoItem({ id, texto, tarefaConcluida, marcarConcluida, removerTarefa }) {
   return (
-    <li className="d-flex justify-content-between align-items-center mb-2">
+    <li className="list-group-item d-flex justify-content-between align-items-center">
       <span style={{ textDecoration: tarefaConcluida ? 'line-through' : 'none' }}>
         {texto}
       </span>
-      <input type="checkbox" name="concluido" onChange={() => marcarConcluida(id)} checked={tarefaConcluida} />
-      {/* <button className="btn btn-sm btn-success" onClick={() => marcarConcluida(id)}>{tarefaConcluida ? '✔' : '❌'}</button> */}
+      {/* Checkbox para marcar tarefa como concluida */}
+      <label htmlFor="concluido" className="form-check-label">Concluir ➡</label>
+      <input className='form-check-input' type="checkbox" name="concluido" onChange={() => marcarConcluida(id)} checked={tarefaConcluida}/>
+
       <button className="btn btn-sm btn-danger" onClick={() => removerTarefa(id)}>Remover</button>
     </li>
   );

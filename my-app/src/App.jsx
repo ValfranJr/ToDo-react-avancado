@@ -35,11 +35,13 @@ return (
 function App() {
   return (
     <TodoProvider>
-      <div className="container my-4">
-        <h1 className="text-center mb-4">Minha Lista de Tarefas</h1>
-        <TodoForm />
-        <TodoFilters />
-        <ListaTarefas />
+      <div className="container py-4">
+        <div className="card shadow p-4 mx-auto" style={{ maxWidth: '600px' }}>
+          <h1 className="text-center mb-4">Minha Lista de Tarefas</h1>
+          <TodoForm />
+          <TodoFilters />
+          <ListaTarefas />
+        </div>
       </div>
     </TodoProvider>
   );

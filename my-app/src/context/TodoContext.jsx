@@ -1,10 +1,11 @@
 import { createContext, useState } from 'react';
 import { useMemo } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 // Criação do contexto
 const TodoContext = createContext();
 
 export function TodoProvider({ children }) {
-const [tarefas, setTarefas] = useState([]);
+const [tarefas, setTarefas] = useLocalStorage('tarefas', []);
 const [filtroTexto, setFiltroTexto] = useState('');
 const [filtroStatus, setFiltroStatus] = useState('todas'); // 'todas', 'concluidas', 'pendentes'
 

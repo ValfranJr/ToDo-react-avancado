@@ -1,10 +1,10 @@
 //useLocalStorage para salvar e recuperar do localStorage.
 import { useState } from 'react';
 
-function useLocalStorage(key, valorInicial) {
+function useLocalStorage(chave, valorInicial) {
   const [armazenarValor, setArmazenarValor] = useState(() => {
     try {
-      const item = window.localStorage.getItem(key);
+      const item = window.localStorage.getItem(chave);
       return item ? JSON.parse(item) : valorInicial;
     } catch (error) {
       console.log(error);
@@ -17,7 +17,7 @@ function useLocalStorage(key, valorInicial) {
       const valorParaSalvar =
         value instanceof Function ? value(armazenarValor) : value;
       setArmazenarValor(valorParaSalvar);
-      window.localStorage.setItem(key, JSON.stringify(valorParaSalvar));
+      window.localStorage.setItem(chave, JSON.stringify(valorParaSalvar));
     } catch (error) {
       console.log(error);
     }
