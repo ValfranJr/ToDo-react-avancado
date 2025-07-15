@@ -16,7 +16,7 @@ Uma aplicação de lista de tarefas desenvolvida com React, utilizando **Hooks**
 1. Clone o repositório
    ```bash
    git clone https://github.com/ValfranJr/ToDo-react-avancado.git
-   cd ToDo-react-avancado
+   cd ToDo-react-avancado/my-app
 
 ## 📦 Instalação
 
