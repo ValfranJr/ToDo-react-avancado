@@ -1,9 +1,10 @@
 //TodoFilters – para filtrar entre todas, concluídas ou pendentes.
-import { useContext } from 'react';
-import TodoContext from '../context/TodoContext';
+import { useRecoilState } from 'recoil';
+import { filtroTextoState, filtroStatusState } from '../atoms/filterAtom';
 
 function TodoFilters() {
-  const { filtroTexto, setFiltroTexto, filtroStatus, setFiltroStatus } = useContext(TodoContext);
+  const [filtroTexto, setFiltroTexto] = useRecoilState(filtroTextoState);
+  const [filtroStatus, setFiltroStatus] = useRecoilState(filtroStatusState);
 
   return (
     <div className="mb-3">
