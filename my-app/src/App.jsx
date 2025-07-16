@@ -1,49 +1,57 @@
-import { TodoProvider } from './context/TodoContext';
-import TodoForm from './components/TodoForm';
-import TodoItem from './components/TodoItem';
-import { useContext } from 'react';
-import TodoContext from './context/TodoContext';
-import TodoFilters from './components/TodoFilters';
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { todoListState } from "./atoms/todoListAtom";
+import { tarefasFiltradasState } from "./selectors/filteredTodos";
+import TodoForm from "./components/TodoForm";
+import TodoItem from "./components/TodoItem";
+import TodoFilters from "./components/TodoFilters";
+import "./App.css";
+
 
 function ListaTarefas() {
-  const { tarefas, filtroTexto, filtroStatus, marcarConcluida, removerTarefa } = useContext(TodoContext);
-  const tarefasFiltradas = tarefas.filter((tarefa) => {
-  const textoCondiz = tarefa.texto.toLowerCase().includes(filtroTexto.toLowerCase());
+  const tarefasFiltradas = useRecoilValue(tarefasFiltradasState);
+  const setTarefas = useSetRecoilState(todoListState);
 
-  if (filtroStatus === 'todas') return textoCondiz;
-  if (filtroStatus === 'concluidas') return textoCondiz && tarefa.concluida;
-  if (filtroStatus === 'pendentes') return textoCondiz && !tarefa.concluida;
-  return true;
-});
+  const marcarConcluida = (id) => {
+    setTarefas((tarefas) =>
+      tarefas.map((tarefa) =>
+        tarefa.id === id ? { ...tarefa, concluida: !tarefa.concluida } : tarefa
+      )
+    );
+  };
 
-return (
+  const removerTarefa = (id) => {
+    setTarefas((tarefas) => tarefas.filter((tarefa) => tarefa.id !== id));
+  };
+
+
+
+  return (
   <ul className="list-group">
     {tarefasFiltradas.map((tarefa) => (
       <TodoItem
-          key={tarefa.id}
-          id={tarefa.id}
-          texto={tarefa.texto}
-          tarefaConcluida={tarefa.concluida}
-          marcarConcluida={marcarConcluida}
-          removerTarefa={removerTarefa}
-        />
-      ))}
-    </ul>
-  );
+        key={tarefa.id}
+        id={tarefa.id}
+        texto={tarefa.texto}
+        tarefaConcluida={tarefa.concluida}
+        marcarConcluida={marcarConcluida}
+        removerTarefa={removerTarefa}
+      />
+    ))}
+  </ul>
+);
 }
-
 function App() {
   return (
-    <TodoProvider>
+    <div>
       <div className="container py-4">
-        <div className="card shadow p-4 mx-auto" style={{ maxWidth: '600px' }}>
+        <div className="card shadow p-4 mx-auto" style={{ maxWidth: "600px" }}>
           <h1 className="text-center mb-4">Minha Lista de Tarefas</h1>
           <TodoForm />
           <TodoFilters />
           <ListaTarefas />
         </div>
       </div>
-    </TodoProvider>
+    </div>
   );
 }
 
