@@ -1,14 +1,13 @@
 # ToDo-react-avancado
 
-Uma aplicação de lista de tarefas desenvolvida com React, utilizando **Hooks**, **Context API**, **memoization** e um **hook customizado** para `localStorage`.
-
+Uma aplicação de lista de tarefas desenvolvida com React, utilizando **Hooks**, **Recoil** e **Bootstrap 5**.
 ## 🚀 Tecnologias utilizadas
 
 - [React](https://reactjs.org/)
-- Context API
-- Hooks (`useState`, `useEffect`, `useContext`, `useMemo`)
+- [Recoil](https://recoiljs.org/)
+- Hooks (`useState`, `useEffect`, `useRecoilState`, `useRecoilValue`, `useSetRecoilState`)
+- Selectors e Atoms com persistência
 - Bootstrap 5 (estilização)
-- Hook customizado `useLocalStorage`
 - Vite (para ambiente de desenvolvimento rápido)
 
 ## Como rodar o projeto localmente
